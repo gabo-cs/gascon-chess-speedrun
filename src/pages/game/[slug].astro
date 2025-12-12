@@ -1,0 +1,59 @@
+---
+import "../../styles/global.css";
+
+import games from "../../data/games.json";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const games = (await import("../../data/games.json")).default;
+    return games.map((game) => ({
+        params: { slug: game.slug },
+    }));
+}
+
+const slug = Astro.params.slug;
+const game = games.find((g) => g.slug === slug);
+
+if (!game) throw new Error(`Game not found: ${slug}`);
+---
+
+<Layout title={game.opening}>
+    <header class="mb-8">
+        <a href="/" class="text-blue-600 hover:underline font-medium"
+            >&larr; Back to games</a
+        >
+    </header>
+
+    <main class="bg-white shadow-lg rounded-xl p-6">
+        <h1 class="text-3xl font-bold mb-2">{game.opening}</h1>
+
+        <p class="text-gray-600 mb-6">
+            <strong>{game.white}</strong>
+            vs <strong>{game.black} ({game.opponent_rating})</strong>
+        </p>
+
+        <div class="space-y-6">
+            <section>
+                <h2 class="text-xl font-semibold mb-2">YouTube Video</h2>
+                <a
+                    href={game.youtube_link}
+                    target="_blank"
+                    class="text-blue-600 hover:underline break-all"
+                >
+                    {game.youtube_link}
+                </a>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mb-2">Chess.com Game</h2>
+                <a
+                    href={game.chesscom_link}
+                    target="_blank"
+                    class="text-blue-600 hover:underline break-all"
+                >
+                    {game.chesscom_link}
+                </a>
+            </section>
+        </div>
+    </main>
+</Layout>

@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "italian-game-vs-walka",
+    "opening": "Italian Game",
+    "white": "Gascón",
+    "black": "walka_grim",
+    "opponent_rating": 1813,
+    "youtube_link": "https://www.youtube.com/watch?v=IzCJoTSf6Ns&t=34s",
+    "chesscom_link": "https://www.chess.com/game/live/78953598085?move=0"
+  },
+  {
+    "slug": "spanish-game-vs-shekmashek",
+    "opening": "Spanish",
+    "white": "shekmashek",
+    "black": "Gascón",
+    "opponent_rating": 1730,
+    "youtube_link": "https://www.youtube.com/watch?v=qRyTMuNznQ8&t=40s",
+    "chesscom_link": "https://www.chess.com/game/live/89399536777?move=0"
+  }
+]
