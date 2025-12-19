@@ -24,17 +24,23 @@ import Navbar from "../components/Navbar.astro";
     </head>
 
     <body
-        class="min-h-screen mx-auto max-w-3xl p-6 font-sans
+        class="min-h-screen font-sans
         bg-gray-50 text-gray-900
         dark:bg-gray-900 dark:text-gray-100"
     >
-        <Navbar />
+        <div class="mx-auto max-w-4xl px-6">
+            <Navbar />
 
-        <slot />
+            <slot />
 
-        <footer class="text-center text-gray-500 text-sm mt-10 pb-4">
-            Created by Gabo in 2025
-        </footer>
+            <footer class="text-center text-gray-500 text-sm mt-10 pb-4">
+                © Created by <a
+                    class="text-blue-600"
+                    target="_blank"
+                    href="https://gabo-cs.github.io/">Gabriel Coronado</a
+                > in 2025
+            </footer>
+        </div>
 
         <!-- Toggle logic -->
         <script>
