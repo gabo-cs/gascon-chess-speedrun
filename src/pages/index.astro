@@ -12,7 +12,231 @@ import Layout from "../layouts/Layout.astro";
         Browse every game from the GM Gascón’s speedrun series.
     </p>
 
+    <button
+        id="filters-toggle"
+        class="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg
+               bg-white dark:bg-gray-800
+               border border-gray-200 dark:border-gray-700
+               shadow-sm hover:shadow-md
+               text-gray-700 dark:text-gray-200
+               transition"
+    >
+        <!-- Icon -->
+        <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.447.832l-4 2.667A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z"
+            ></path>
+        </svg>
+
+        <span class="font-medium">Filtros</span>
+
+        <span
+            id="filters-count"
+            class="ml-2 hidden text-xs px-2 py-0.5 rounded-full
+                   bg-blue-100 text-blue-700
+                   dark:bg-blue-900 dark:text-blue-200"
+        >
+            0
+        </span>
+    </button>
+
+    <div
+        id="filters-panel"
+        class="mt-4 overflow-hidden transition-all duration-300
+               max-h-0 opacity-0"
+    >
+        <section
+            class="mb-4 rounded-xl border border-gray-200 dark:border-gray-700
+                   bg-white dark:bg-gray-800 p-4"
+        >
+            <div class="grid gap-4 sm:grid-cols-3">
+                <!-- Min rating -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">
+                        Rating mínimo
+                    </label>
+                    <input
+                        id="min-rating"
+                        type="number"
+                        placeholder="Ej: 1000"
+                        class="w-full rounded-md border px-3 py-2
+                               bg-gray-50 dark:bg-gray-900
+                               border-gray-300 dark:border-gray-700"
+                    />
+                </div>
+
+                <!-- Max rating -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">
+                        Rating máximo
+                    </label>
+                    <input
+                        id="max-rating"
+                        type="number"
+                        placeholder="Ej: 1800"
+                        class="w-full rounded-md border px-3 py-2
+                               bg-gray-50 dark:bg-gray-900
+                               border-gray-300 dark:border-gray-700"
+                    />
+                </div>
+
+                <!-- Opening -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">
+                        Apertura
+                    </label>
+                    <select
+                        id="opening-filter"
+                        class="w-full rounded-md border px-3 py-2
+                               bg-gray-50 dark:bg-gray-900
+                               border-gray-300 dark:border-gray-700"
+                    >
+                        <option value="">Todas</option>
+                        {
+                            [...new Set(games.map((g) => g.opening_es))]
+                                .sort()
+                                .map((opening) => (
+                                    <option value={opening}>{opening}</option>
+                                ))
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <button
+                id="clear-filters"
+                type="button"
+                class="cursor-pointer hidden items-center gap-2
+                        mt-1 py-1.5 rounded-full
+                       text-sm font-medium
+                       text-gray-600 dark:text-gray-400
+                       bg-transparent
+                       hover:bg-gray-100 dark:hover:bg-gray-800
+                       hover:text-gray-900 dark:hover:text-gray-100
+                       transition-colors"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 opacity-60"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+
+                <span>Limpiar</span>
+            </button>
+        </section>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
         {games.map((game) => <GameCard game={game} />)}
     </div>
+
+    <script>
+        const toggle = document.getElementById("filters-toggle");
+        const panel = document.getElementById("filters-panel");
+
+        toggle?.addEventListener("click", () => {
+            const open = panel?.classList.toggle("open");
+
+            panel?.classList.toggle("max-h-0", !open);
+            panel?.classList.toggle("opacity-0", !open);
+
+            panel?.classList.toggle("max-h-[500px]", open);
+            panel?.classList.toggle("opacity-100", open);
+        });
+
+        const minInput = document.getElementById(
+            "min-rating",
+        ) as HTMLInputElement | null;
+        const maxInput = document.getElementById(
+            "max-rating",
+        ) as HTMLInputElement | null;
+        const openingSelect = document.getElementById(
+            "opening-filter",
+        ) as HTMLSelectElement | null;
+        const cards = document.querySelectorAll<HTMLElement>(".game-card");
+
+        function applyFilters() {
+            if (!minInput || !maxInput || !openingSelect) return;
+
+            const min = Number(minInput.value) || 0;
+            const max = Number(maxInput.value) || Infinity;
+            const opening = openingSelect.value;
+
+            cards.forEach((card) => {
+                const rating = Number(card.dataset.rating);
+                const cardOpening = card.dataset.opening;
+
+                const matchesRating = rating >= min && rating <= max;
+                const matchesOpening = !opening || cardOpening === opening;
+
+                card.style.display =
+                    matchesRating && matchesOpening ? "block" : "none";
+            });
+
+            updateFiltersCount();
+        }
+
+        if (minInput) minInput.addEventListener("input", applyFilters);
+        if (maxInput) maxInput.addEventListener("input", applyFilters);
+        if (openingSelect)
+            openingSelect.addEventListener("change", applyFilters);
+
+        applyFilters();
+
+        function updateFiltersCount() {
+            let count = 0;
+
+            const min = minInput?.value;
+            const max = maxInput?.value;
+            const opening = openingSelect?.value;
+
+            if (min && Number(min) > 0) count++;
+            if (max && Number(max) > 0) count++;
+            if (opening) count++;
+
+            const badge = document.getElementById("filters-count");
+            const clearBtn = document.getElementById("clear-filters");
+
+            if (!badge || !clearBtn) return;
+
+            if (count > 0) {
+                badge.textContent = String(count);
+                badge.classList.remove("hidden");
+                clearBtn.classList.remove("hidden");
+                clearBtn.classList.add("inline-flex");
+            } else {
+                badge.classList.add("hidden");
+                clearBtn.classList.add("hidden");
+                clearBtn.classList.remove("inline-flex");
+            }
+        }
+
+        const clearBtn = document.getElementById("clear-filters");
+
+        function clearFilters() {
+            if (minInput) minInput.value = "";
+            if (maxInput) maxInput.value = "";
+            if (openingSelect) openingSelect.value = "";
+
+            applyFilters();
+        }
+
+        clearBtn?.addEventListener("click", clearFilters);
+    </script>
 </Layout>

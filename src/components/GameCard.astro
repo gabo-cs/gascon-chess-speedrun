@@ -4,7 +4,9 @@ const { game } = Astro.props;
 
 <a
     href={`/game/${game.slug}`}
-    class="block bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 border border-gray-200 dark:border-gray-700"
+    data-rating={game.opponent_rating}
+    data-opening={game.opening_es}
+    class="game-card block bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 border border-gray-200 dark:border-gray-700"
 >
     <!-- Title row -->
     <div class="flex items-center justify-between gap-3">
