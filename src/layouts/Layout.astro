@@ -7,6 +7,11 @@ import Navbar from "../components/Navbar.astro";
 <!doctype html>
 <html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
         <script is:inline>
             if (
                 localStorage.theme === "dark" ||
@@ -18,14 +23,6 @@ import Navbar from "../components/Navbar.astro";
                 document.documentElement.classList.remove("dark");
             }
         </script>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <meta charset="utf-8" />
-
-        <title>{title}</title>
-
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     </head>
 
     <body
