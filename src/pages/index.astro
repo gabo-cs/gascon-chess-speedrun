@@ -195,17 +195,17 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <script>
-        const toggle = document.getElementById("filters-toggle");
-        const panel = document.getElementById("filters-panel");
+        const filtersToggle = document.getElementById("filters-toggle");
+        const filtersPanel = document.getElementById("filters-panel");
 
-        toggle?.addEventListener("click", () => {
-            const open = panel?.classList.toggle("open");
+        filtersToggle?.addEventListener("click", () => {
+            const open = filtersPanel?.classList.toggle("open");
 
-            panel?.classList.toggle("max-h-0", !open);
-            panel?.classList.toggle("opacity-0", !open);
+            filtersPanel?.classList.toggle("max-h-0", !open);
+            filtersPanel?.classList.toggle("opacity-0", !open);
 
-            panel?.classList.toggle("max-h-[500px]", open);
-            panel?.classList.toggle("opacity-100", open);
+            filtersPanel?.classList.toggle("max-h-[500px]", open);
+            filtersPanel?.classList.toggle("opacity-100", open);
         });
 
         const minInput = document.getElementById(
@@ -336,5 +336,32 @@ import Layout from "../layouts/Layout.astro";
         });
 
         applySorting();
+
+        document.addEventListener("click", (event) => {
+            const target = event.target as Node | null;
+            if (!target) return;
+
+            // ---- CLOSE SORT MENU ----
+            if (
+                sortMenu &&
+                !sortMenu.classList.contains("hidden") &&
+                !sortMenu.contains(target) &&
+                !sortToggle.contains(target)
+            ) {
+                sortMenu.classList.add("hidden");
+            }
+
+            // ---- CLOSE FILTER PANEL ----
+            if (
+                filtersPanel &&
+                filtersPanel.classList.contains("open") &&
+                !filtersPanel.contains(target) &&
+                !filtersToggle?.contains(target)
+            ) {
+                filtersPanel.classList.remove("open");
+                filtersPanel.classList.add("max-h-0", "opacity-0");
+                filtersPanel.classList.remove("max-h-[500px]", "opacity-100");
+            }
+        });
     </script>
 </Layout>
