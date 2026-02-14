@@ -98,7 +98,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 This project was created with the approval and encouragement of **GM Gascón** himself. He has green-lit the project and encouraged sharing it with the chess community.
 
 - **GM Gascón** - For the incredible "Cómo Piensa un GM" speedrun series
-- YouTube Channel: [@GasconChess](https://www.youtube.com/@GasconChess)
+- YouTube Channel: [@GasconChess](https://www.youtube.com/@gmgascon)
 
 ## 👀 Want to learn more about Astro?
 
