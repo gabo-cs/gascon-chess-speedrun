@@ -20,7 +20,7 @@ if (!game) throw new Error(`Game not found: ${slug}`);
 <Layout title={game.opening_es}>
     <header class="mb-8">
         <a href="/" class="text-blue-600 hover:underline font-medium"
-            >&larr; Back to games</a
+            >&larr; Ver todas las partidas</a
         >
     </header>
 
@@ -43,8 +43,8 @@ if (!game) throw new Error(`Game not found: ${slug}`);
         <div class="mt-2 space-y-2 mb-6">
             {
                 game.variation_es && (
-                    <p class="text-md mb-6 text-gray-500 dark:text-gray-400">
-                        Variante: {game.variation_es}
+                    <p class="text-lg text-gray-500 dark:text-gray-400 mt-2">
+                        {game.variation_es}
                     </p>
                 )
             }
@@ -83,7 +83,7 @@ if (!game) throw new Error(`Game not found: ${slug}`);
                             Ver video en YouTube
                         </p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            Análisis completo de la partida
+                            Momento exacto del video de la partida
                         </p>
                     </div>
 

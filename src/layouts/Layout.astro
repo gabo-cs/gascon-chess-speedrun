@@ -33,14 +33,78 @@ import Navbar from "../components/Navbar.astro";
         <div class="mx-auto max-w-4xl px-6">
             <Navbar />
 
+            <!-- Hero description -->
+            <section class="mt-8 mb-10 text-center">
+                <h1
+                    class="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white"
+                >
+                    Cómo Piensa Un GM | Partidas
+                </h1>
+
+                <p
+                    class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+                >
+                    Biblioteca completa del Speedrun del
+                    <a
+                        href="https://www.youtube.com/@gmgascon"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-semibold
+                               decoration-gray-400 dark:decoration-gray-500
+                               hover:decoration-black dark:hover:decoration-white
+                               transition"
+                    >
+                        GM José Gascón del Nogal.
+                    </a>
+                    Partidas catalogadas por apertura, rating y enlaces directos a
+                    videos de YouTube y partida en chess.com
+                </p>
+            </section>
+
             <slot />
 
-            <footer class="text-center text-gray-500 text-sm mt-10 pb-4">
-                © Created by <a
-                    class="text-blue-600"
-                    target="_blank"
-                    href="https://gabo-cs.github.io/">Gabriel Coronado</a
-                >
+            <footer
+                class="text-center text-gray-500 dark:text-gray-400 text-sm mt-12 pb-6 space-y-2"
+            >
+                <p>
+                    © Creado por
+                    <a
+                        class="text-blue-600 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://gabo-cs.github.io/"
+                    >
+                        Gabriel Coronado
+                    </a>
+                </p>
+
+                <p class="flex justify-center items-center gap-2 text-xs">
+                    <span>Proyecto open source |</span>
+
+                    <a
+                        href="https://github.com/gabo-cs/gascon-chess-speedrun"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1
+                               text-gray-600 dark:text-gray-300
+                               hover:text-black dark:hover:text-white
+                               transition"
+                    >
+                        <!-- GitHub icon -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 008 10.95c.6.1.82-.26.82-.58v-2.03c-3.25.7-3.94-1.4-3.94-1.4-.54-1.37-1.32-1.74-1.32-1.74-1.08-.73.08-.72.08-.72 1.2.08 1.84 1.23 1.84 1.23 1.06 1.8 2.8 1.28 3.48.98.1-.78.42-1.28.76-1.57-2.6-.3-5.34-1.3-5.34-5.78 0-1.27.46-2.3 1.22-3.12-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.2a11.3 11.3 0 016 0c2.3-1.52 3.3-1.2 3.3-1.2.65 1.65.24 2.87.12 3.17.76.82 1.22 1.85 1.22 3.12 0 4.5-2.74 5.47-5.35 5.76.43.37.82 1.1.82 2.23v3.3c0 .32.22.7.83.58A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"
+                            ></path>
+                        </svg>
+
+                        Contribuir en GitHub
+                    </a>
+                </p>
             </footer>
         </div>
 
