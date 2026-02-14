@@ -1020,6 +1020,18 @@
     "chesscom_link": "https://www.chess.com/game/live/140606463891?move=0"
   },
   {
+    "slug": "scotch-vs-2133",
+    "opening_en": "Scotch Game",
+    "opening_es": "Apertura Escocesa",
+    "variation_en": "Scotch Gambit",
+    "variation_es": "Gambito Escocés",
+    "white": "Gascón",
+    "black": "33867ty",
+    "opponent_rating": 2133,
+    "youtube_link": "https://youtu.be/PJjxzaqHpK8?t=67",
+    "chesscom_link": "https://www.chess.com/game/live/143139125894?move=0"
+  },
+  {
     "slug": "philidor-vs-2136",
     "opening_en": "Philidor Defense",
     "opening_es": "Defensa Philidor",
@@ -1054,5 +1066,17 @@
     "opponent_rating": 2161,
     "youtube_link": "https://youtu.be/OVGvcxIQq1Q?t=8",
     "chesscom_link": "https://www.chess.com/game/live/80594572289?move=0"
+  },
+  {
+    "slug": "philidor-vs-2228",
+    "opening_en": "Philidor Defense",
+    "opening_es": "Defensa Philidor",
+    "variation_en": "Hanham",
+    "variation_es": "Hanham",
+    "white": "WillyViking",
+    "black": "Gascón",
+    "opponent_rating": 2228,
+    "youtube_link": "https://youtu.be/oJeLdn_sye0?t=44",
+    "chesscom_link": "https://www.chess.com/game/live/145188691006?move=0"
   }
 ]
